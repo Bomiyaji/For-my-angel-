@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For My Angel: Suhani ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --glass-bg: rgba(20, 15, 35, 0.5); /* Deep dreamy purple/blue */
+            --glass-border: rgba(255, 192, 203, 0.2);
+            --soft-lilac: #d8b4e2;
+            --romantic-pink: #ffb7c5;
+            --deep-indigo: #1a0b2e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; touch-action: manipulation; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--deep-indigo); 
+            overflow: hidden;
+            height: 100dvh;
+            color: white;
+            user-select: none;
+        }
+
+        /* Dreamy Ambient Glows */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.5;
+            animation: floatOrb 10s infinite alternate;
+            z-index: 0;
+        }
+        .orb-1 { width: 350px; height: 350px; background: #6b4c9a; top: -50px; left: -50px; }
+        .orb-2 { width: 400px; height: 400px; background: #ff8fa3; bottom: -100px; right: -50px; animation-delay: -5s; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 50px) scale(1.1); }
+        }
+
+        .section {
+            height: 100dvh;
+            width: 100vw;
+            display: none; 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 25px;
+            position: absolute;
+            top: 0; left: 0;
+            z-index: 10;
+        }
+
+        .active { display: flex; animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        .fade-out { animation: slideOut 0.5s forwards; pointer-events: none; }
+
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes slideOut {
+            to { opacity: 0; transform: scale(1.05) translateY(-20px); filter: blur(10px); }
+        }
+
+        /* Elegant Typography */
+        h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: clamp(2.8rem, 10vw, 4.5rem);
+            margin-bottom: 25px;
+            color: var(--romantic-pink);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 20px rgba(255, 183, 197, 0.4);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 1s ease;
+            letter-spacing: 1px;
+        }
+        
+        .active h1 { opacity: 1; transform: translateY(0); }
+
+        /* Premium Frosted Glass Card */
+        .glass-card { 
+            font-size: clamp(1.05rem, 4.5vw, 1.2rem);
+            width: 90%;
+            max-width: 420px; 
+            min-height: 200px; 
+            line-height: 1.8; 
+            background: var(--glass-bg);
+            padding: 35px 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5), inset 0 0 20px rgba(255,255,255,0.05);
+            text-align: left; 
+            font-weight: 300;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: var(--soft-lilac);
+            vertical-align: bottom;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Soft Romantic Button */
+        .nav-btn {
+            margin-top: 40px;
+            padding: 15px 45px;
+            border: 1px solid var(--soft-lilac);
+            border-radius: 50px;
+            background: rgba(216, 180, 226, 0.1);
+            color: var(--romantic-pink);
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(216, 180, 226, 0.15);
+            opacity: 0; 
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+        
+        .nav-btn.show { opacity: 1; pointer-events: all; }
+        .nav-btn:active { transform: scale(0.95); background: var(--soft-lilac); color: #000; }
+
+        /* Fingerprint Vault - Love Version */
+        .fingerprint-container {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 183, 197, 0.4);
+            touch-action: none; 
+        }
+
+        .fingerprint-icon { font-size: 3.5rem; z-index: 2; pointer-events: none; filter: drop-shadow(0 0 10px rgba(255, 183, 197, 0.5)); }
+        
+        .progress-ring {
+            position: absolute;
+            top: -5px; left: -5px;
+            width: 140px; height: 140px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--romantic-pink);
+            border-right-color: var(--soft-lilac);
+            opacity: 0;
+            transform: rotate(0deg) scale(0.8);
+            transition: all 0.1s;
+        }
+
+        .holding .progress-ring {
+            opacity: 1;
+            transform: rotate(360deg) scale(1);
+            transition: transform 2.5s linear, opacity 0.3s;
+        }
+
+        .holding .fingerprint-icon { animation: pulseIcon 0.5s infinite alternate; }
+        @keyframes pulseIcon { 
+            from { transform: scale(1); filter: drop-shadow(0 0 10px var(--romantic-pink)); } 
+            to { transform: scale(1.15); filter: drop-shadow(0 0 25px var(--soft-lilac)); } 
+        }
+
+        /* Falling Dreamy Butterflies/Stars */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            animation: fall linear forwards;
+            opacity: 0.6;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110dvh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glowing Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- PAGE 1 -->
+    <div class="section active" id="p1">
+        <h1>Hi Suhani 😚</h1>
+        <div class="glass-card"><span id="type-p1"></span><span class="cursor"></span></div>
+        <button class="nav-btn" id="btn-p1" onclick="next(2)">Swipe or Tap ✨</button>
+        <div style="font-size: 0.75rem; margin-top:20px; opacity:0.4; letter-spacing: 1px;">OUR SMALL JOURNEY</div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="section" id="p2">
+        <h1>Pure Heart 🤍</h1>
+        <div class="glass-card"><span id="type-p2"></span><span class="cursor"></span></div>
+        <button class="nav-btn" id="btn-p2" onclick="next(3)">Next 🌸</button>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="section" id="p3">
+        <h1>Maturity 🧠</h1>
+        <div class="glass-card"><span id="type-p3"></span><span class="cursor"></span></div>
+        <button class="nav-btn" id="btn-p3" onclick="next(4)">The Secret 🔐</button>
+    </div>
+
+    <!-- PAGE 4 (THE LOCK) -->
+    <div class="section" id="p4">
+        <h1 style="color: var(--soft-lilac);">My Feeling 🦋</h1>
+        <div class="glass-card"><span id="type-p4"></span><span class="cursor"></span></div>
+        
+        <!-- FINGERPRINT SCANNER -->
+        <div class="fingerprint-container" id="scanner">
+            <div class="progress-ring"></div>
+            <div class="fingerprint-icon">👆</div>
+        </div>
+        <div style="margin-top: 20px; font-size: 0.85rem; color: #ccc; letter-spacing: 1px;" id="hold-text">HOLD TO FEEL IT</div>
+    </div>
+
+    <!-- PAGE 5 (FINALE) -->
+    <div class="section" id="p5">
+        <h1>My Girl 💍</h1>
+        <div class="glass-card" style="text-align: center;"><span id="type-p5"></span><span class="cursor"></span></div>
+        <div style="font-size: 3.5rem; margin-top: 25px; filter: drop-shadow(0 0 15px rgba(255, 183, 197, 0.4));">💕✨🦋</div>
+        <button class="nav-btn show" onclick="location.reload()">Feel It Again 🔄</button>
+    </div>
+
+    <script>
+        // --- SWEET & ROMANTIC COPY FOR SUHANI ---
+        const texts = {
+            1: "Suhani, dekhte hi dekhte hamari baaton ko ek mahina hone wala hai... Aur sach kahun? Ye waqt kaise nikal gaya pata hi nahi chala. Tum meri ek pyari si aadat ban chuki ho... ✨",
+            2: "Tumhara dil sach mein bahut saaf hai. Aaj kal itne real log milte kahan hain? Tumhari yahi sadgi aur 'pure heart' mujhe tumhari taraf aur khinchta hai. 🤍",
+            3: "Meri feelings ko jis tarah tum samajhti ho, meri baaton ko jitni maturity se handle karti ho na... mujhe lagta hi nahi ki hum sirf ek mahine se baat kar rahe hain. You are so mature and understanding! 🥺",
+            4: "Ek sach bataun? Dheere dheere tum mujhe itni pyari lagne lagi ho ki bas mann karta hai tujhe pakad kar ek cute si 😚 de doon! Mere dil ka aakhri sach janne ke liye niche hold karo... 🥀",
+            5: "Suhani, tum jaisi bhi ho, mere liye sabse perfect ho. Tumhara hona mujhe bahut special feel karata hai. Hamesha meri ban kar aur aise hi muskurati rehna! I am so lucky to have you. 💕"
+        };
+
+        let currentPage = 1;
+        const totalPages = 5;
+        let typingTimeout;
+
+        function triggerVibration(pattern) {
+            if ("vibrate" in navigator) navigator.vibrate(pattern);
+        }
+
+        // TYPEWRITER EFFECT
+        function typeWriter(pageNum) {
+            clearTimeout(typingTimeout);
+            const element = document.getElementById(`type-p${pageNum}`);
+            const btn = document.getElementById(`btn-p${pageNum}`);
+            const text = texts[pageNum];
+            element.innerHTML = "";
+            
+            if(btn) btn.classList.remove('show');
+            
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    triggerVibration([3]); 
+                    typingTimeout = setTimeout(type, 35); 
+                } else {
+                    if(btn) btn.classList.add('show'); 
+                }
+            }
+            type();
+        }
+
+        function next(num) {
+            triggerVibration([40]); 
+            const current = document.querySelector('.active');
+            current.classList.add('fade-out');
+            
+            setTimeout(() => {
+                current.classList.remove('active', 'fade-out');
+                document.getElementById('p' + num).classList.add('active');
+                currentPage = num;
+                typeWriter(num); 
+            }, 500);
+        }
+
+        window.onload = () => typeWriter(1);
+
+        // SWIPE GESTURES
+        let touchStartX = 0; let touchEndX = 0;
+        document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 60 && currentPage < 4) next(currentPage + 1); 
+            else if (touchStartX - touchEndX < -60 && currentPage > 1) next(currentPage - 1);
+        }, {passive: true});
+
+        // HOLD TO UNLOCK LOGIC 
+        const scanner = document.getElementById('scanner');
+        let holdTimer;
+        let isUnlocked = false;
+
+        function startHold(e) {
+            if(isUnlocked) return;
+            e.preventDefault(); 
+            scanner.classList.add('holding');
+            
+            let beat = setInterval(() => triggerVibration([30, 60, 30]), 500);
+
+            holdTimer = setTimeout(() => {
+                clearInterval(beat);
+                isUnlocked = true;
+                scanner.classList.remove('holding');
+                triggerVibration([100, 50, 100, 50, 200]); 
+                explodeMagic();
+                setTimeout(() => next(5), 800); 
+            }, 2500); // 2.5 Sec hold
+            
+            scanner.dataset.beat = beat;
+        }
+
+        function endHold() {
+            if(isUnlocked) return;
+            scanner.classList.remove('holding');
+            clearTimeout(holdTimer);
+            clearInterval(scanner.dataset.beat);
+            document.getElementById('hold-text').innerText = "Hold it fully... don't let go! 🥺";
+            document.getElementById('hold-text').style.color = "var(--romantic-pink)";
+        }
+
+        scanner.addEventListener('touchstart', startHold, {passive: false});
+        scanner.addEventListener('touchend', endHold);
+        scanner.addEventListener('mousedown', startHold);
+        scanner.addEventListener('mouseup', endHold);
+        scanner.addEventListener('mouseleave', endHold);
+
+        // SOFT ROMANTIC EXPLOSION
+        function explodeMagic() {
+            for(let i=0; i<60; i++) {
+                const conf = document.createElement('div');
+                conf.innerHTML = ['💕','✨','🌸','🤍','🦋'][Math.floor(Math.random()*5)];
+                conf.style.position = 'absolute';
+                conf.style.left = '50%';
+                conf.style.top = '60%';
+                conf.style.pointerEvents = 'none';
+                conf.style.zIndex = '9999';
+                conf.style.fontSize = Math.random() * 15 + 15 + 'px';
+                document.body.appendChild(conf);
+                
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 250 + 80; 
+                const x = Math.cos(angle) * velocity;
+                const y = Math.sin(angle) * velocity;
+
+                setTimeout(() => {
+                    conf.style.transition = 'all 1.2s cubic-bezier(0.1, 0.8, 0.3, 1)';
+                    conf.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random()*360}deg)`;
+                    conf.style.opacity = '0';
+                    setTimeout(() => conf.remove(), 1200);
+                }, 10);
+            }
+        }
+
+        // Ambient Falling Butterflies & Stars
+        setInterval(() => {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.innerText = ['✨','🦋','🤍','🌸'][Math.floor(Math.random()*4)];
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.top = '-50px';
+            p.style.fontSize = Math.random() * 12 + 10 + 'px';
+            p.style.animationDuration = Math.random() * 5 + 4 + 's';
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 9000);
+        }, 400);
+    </script>
+</body>
+</html>
